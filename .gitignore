@@ -1,0 +1,36 @@
+##############################
+## Java
+##############################
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Maven target directory
+target/
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Gradle files
+.gradle/
+build/
+
+# Log files
+*.log
+
+# Other generated files
+*.bak
+*.swp
+*~
