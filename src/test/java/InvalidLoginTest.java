@@ -28,16 +28,16 @@ public class InvalidLoginTest {
         //Navigate to main page
         driver.get("https://store.steampowered.com/");
         //1st  validation - main page is displayed
-        System.out.println(driver.getTitle());
-        String expectedTitle = "Bienvenidos a Steam";
-        Assert.assertEquals(expectedTitle, driver.getTitle());
+        System.out.println(driver.getCurrentUrl());
+        String expectedUrl = "https://store.steampowered.com/";
+        Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
 
         //Click Login button
         driver.findElement(By.xpath("//a[@class='global_action_link']")).click();
         //2nd validation - login page is displayed
-        System.out.println(driver.getTitle());
-        String expectedLoginTitle = "Iniciar sesión";
-        Assert.assertEquals(expectedLoginTitle, driver.getTitle());
+        System.out.println(driver.getCurrentUrl());
+        String expectedLoginUrl = "https://store.steampowered.com/login/?redir=&redir_ssl=1&snr=1_4_4__global-header";
+        Assert.assertEquals(expectedLoginUrl, driver.getCurrentUrl());
 
         //Explicit wait -- wait for login page to be displayed
         WebElement userName = new WebDriverWait(driver, Duration.ofSeconds(10))
