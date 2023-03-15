@@ -1,5 +1,6 @@
-package task1_0;
+package a1qa.task1_0;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,7 @@ public class InvalidLoginTest {
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\roliz\\Documentos\\chromedriver_win32\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
     }
 
@@ -30,14 +31,16 @@ public class InvalidLoginTest {
         //Navigate to main page
         driver.get("https://store.steampowered.com/");
         //1st  validation - main page is displayed
-        System.out.println(driver.getCurrentUrl());
+            System.out.println(driver.getTitle());
+            System.out.println(driver.getCurrentUrl());
         String expectedUrl = "https://store.steampowered.com/";
         Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
 
         //Click Login button
         driver.findElement(By.xpath("//a[@class='global_action_link']")).click();
         //2nd validation - login page is displayed
-        System.out.println(driver.getCurrentUrl());
+            System.out.println(driver.getTitle());
+            System.out.println(driver.getCurrentUrl());
         String expectedLoginUrl = "https://store.steampowered.com/login/?redir=&redir_ssl=1&snr=1_4_4__global-header";
         Assert.assertEquals(expectedLoginUrl, driver.getCurrentUrl());
 
