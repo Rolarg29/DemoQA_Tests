@@ -21,6 +21,7 @@ public class InvalidLoginTest {
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--lang=en");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
     }
@@ -31,18 +32,15 @@ public class InvalidLoginTest {
         //Navigate to main page
         driver.get("https://store.steampowered.com/");
         //1st  validation - main page is displayed
-            System.out.println(driver.getTitle());
-            System.out.println(driver.getCurrentUrl());
-        String expectedUrl = "https://store.steampowered.com/";
-        Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
+        String expectedTitle = "Welcome to Steam";
+        Assert.assertEquals(expectedTitle, driver.getTitle());
+
 
         //Click Login button
         driver.findElement(By.xpath("//a[@class='global_action_link']")).click();
         //2nd validation - login page is displayed
-            System.out.println(driver.getTitle());
-            System.out.println(driver.getCurrentUrl());
-        String expectedLoginUrl = "https://store.steampowered.com/login/?redir=&redir_ssl=1&snr=1_4_4__global-header";
-        Assert.assertEquals(expectedLoginUrl, driver.getCurrentUrl());
+        String expectedTitle2 = "Sign In";
+        Assert.assertEquals(expectedTitle2, driver.getTitle());
 
         //Explicit wait -- wait for login page to be displayed
         WebElement userName = new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -58,7 +56,6 @@ public class InvalidLoginTest {
 
         //3rd validation - Loading element is displayed
         WebElement loadingElement = driver.findElement(By.xpath("//button[contains(@class,'Loading')]"));
-        System.out.println(loadingElement.isDisplayed());
         Assert.assertTrue(loadingElement.isDisplayed());
 
         //4th validation - Error message is displayed
@@ -68,7 +65,7 @@ public class InvalidLoginTest {
 
     @AfterSuite
     public void tearDown() {
-        driver.quit();
+//        driver.quit();
     }
 
 }
