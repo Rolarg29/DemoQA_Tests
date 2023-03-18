@@ -1,4 +1,4 @@
-package a1qa.pom;
+package a1qa.patterns;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,11 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static java.sql.DriverManager.getDriver;
-
-public class Base {
+public class BaseUtil {
     private WebDriver driver;
-    public Base(WebDriver driver) {
+    public BaseUtil(WebDriver driver) {
         this.driver = driver;
     }
 
