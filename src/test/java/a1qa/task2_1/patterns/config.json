@@ -1,0 +1,14 @@
+{
+  "browser": "chrome",
+  "chrome_options": {
+    "arguments": [
+      "--incognito",
+      "--remote-allow-origins=*"
+    ]
+  },
+  "implicit_wait_time": 10,
+  "explicit_wait_time": 10,
+  "base_url": "https://store.steampowered.com/",
+  "search_query": "Dota 2",
+  "json_file_path": "results.json"
+}
