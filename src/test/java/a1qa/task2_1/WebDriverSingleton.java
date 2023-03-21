@@ -22,15 +22,11 @@ public class WebDriverSingleton {
 
             }
         }
-        driver.manage().deleteAllCookies();
+        assert driver != null;
         driver.manage().window().maximize();
     }
     public static void quit(){
         driver.quit();
-        driver = null;
-    }
-    public static void close(){
-        driver.close();
         driver = null;
     }
 }
