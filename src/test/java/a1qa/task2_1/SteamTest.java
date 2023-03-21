@@ -4,6 +4,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import static a1qa.task2_1.HomePage.*;
 
 
 public class SteamTest {
@@ -15,11 +16,12 @@ public class SteamTest {
 
     @Test
     public void testPrivacyPolicy(){
+        BaseUtil.visit(MainUrl);
     }
 
     @AfterSuite
     public void tearDown(){
-        WebDriverSingleton.quit();
+//        WebDriverSingleton.quit();
     }
 
 }
