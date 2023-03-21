@@ -17,6 +17,8 @@ public class SteamTest {
     @Test
     public void testPrivacyPolicy(){
         BaseUtil.visit(MainUrl);
+//        HomePage.scrollToPrivacyPolicy();
+        BaseUtil.scrollTo(privacyPolicyLink);
     }
 
     @AfterSuite
