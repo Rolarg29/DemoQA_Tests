@@ -21,14 +21,15 @@ public class SteamTest {
         scrollTo(privacyPolicyLink);
         click(privacyPolicyClick);
         switchTab();
+        selectLang(languages);
         Assert.assertEquals(driver.getTitle(), policyTitle, "The are NOT the same");
-        Assert.assertEquals(allLanguagesDisplayed, true);//final result
+        Assert.assertTrue(allLanguagesDisplayed);
 
     }
 
     @AfterSuite
     public void tearDown(){
-        WebDriverSingleton.quit();
+//        WebDriverSingleton.quit();
     }
 
 }
