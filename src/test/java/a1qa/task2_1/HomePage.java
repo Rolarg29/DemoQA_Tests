@@ -2,16 +2,14 @@ package a1qa.task2_1;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
-
 import static a1qa.task2_1.BaseUtil.click;
+import static a1qa.task2_1.BaseUtil.findElement;
 
 
 public class HomePage {
     private static final WebDriver driver = WebDriverSingleton.driver;
 
-    // Examples
+    // Home page and privacy policy links
     public static final String mainUrl = "https://store.steampowered.com/";
     public static final String mainTitle = "Welcome to Steam";
     public static final String policyTitle = "Privacy Policy Agreement";
@@ -19,7 +17,7 @@ public class HomePage {
     public static final By privacyPolicyClick = By.linkText("Privacy Policy");
     public static final By privacyTitle = By.xpath("//div[contains(text(),'Privacy Policy Agreement')]");
 
-    public static final By languageDropdown = By.id("languages");
+    //Privacy Policy Language list
     public static boolean allLanguagesDisplayed = false;
     public static final By spanish = By.cssSelector("a[href*='spanish'] img");
     public static final By portuguese = By.cssSelector("a[href*='portuguese'] img");
@@ -32,22 +30,15 @@ public class HomePage {
     public static final By brazilian = By.cssSelector("a[href*='brazilian'] img");
     public static final By[] languages = {spanish,french,german,italian,russian,japanese,portuguese,brazilian,english};
 
-
-    public void clickLanguageDropdown() {
-        driver.findElement(languageDropdown).click();
-    }
+    //Revision date
+//    public static WebElement revDate = driver.findElement(By.xpath("/html/body/div/div[7]/div[6]/div[1]/div/div[2]/div[2]/div/div[2]/i[3]"));
 
 
     public static void selectLang(By[] languages){
         for (By language : languages){
 //            click(language);
-            WebElement element =  driver.findElement(language);
+            WebElement element =  findElement(language);
             allLanguagesDisplayed = element.isDisplayed();
         }
-    }
-
-
-    public String getPageTitle() {
-        return driver.getTitle();
     }
 }

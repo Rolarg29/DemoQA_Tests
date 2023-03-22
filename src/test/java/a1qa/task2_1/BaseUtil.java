@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -60,9 +59,13 @@ public class BaseUtil {
     }
 
     //wait for an element to be displayed
-    public static void waitForElement(By locator) {//creado por mi
+    public static void waitForView(By locator) {//creado por mi
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public static void waitForClickable(By locator) {//creado por mi
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     //Scrolls down to find element
@@ -71,6 +74,11 @@ public class BaseUtil {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
+    public static void scrollToEnd() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");    }
+
 
     public static void switchTab(){
         String firstTab = driver.getWindowHandle();

@@ -18,12 +18,14 @@ public class SteamTest {
     @Test
     public void testPrivacyPolicy(){
         visit(mainUrl);
-        scrollTo(privacyPolicyLink);
+        scrollToEnd();
+        waitForClickable(privacyPolicyClick);
         click(privacyPolicyClick);
         switchTab();
+        Assert.assertEquals(driver.getTitle(), policyTitle, "They are NOT the same");
         selectLang(languages);
-        Assert.assertEquals(driver.getTitle(), policyTitle, "The are NOT the same");
         Assert.assertTrue(allLanguagesDisplayed);
+//        getText(revDate);
 
     }
 
