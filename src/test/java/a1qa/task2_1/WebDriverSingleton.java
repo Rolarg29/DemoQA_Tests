@@ -17,6 +17,7 @@ public class WebDriverSingleton {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--lang=en");
+                options.addArguments("--incognito");
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(options);
 

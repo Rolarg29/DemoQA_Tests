@@ -16,6 +16,7 @@ public class BaseUtil {
 
     //finds an element by any locator given
     public static WebElement findElement(By locator) {
+        WebElement element = driver.findElement(locator);
         return driver.findElement(locator);
     }
 
@@ -60,7 +61,7 @@ public class BaseUtil {
 
     //wait for an element to be displayed
     public static void waitForElement(By locator) {//creado por mi
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -69,5 +70,14 @@ public class BaseUtil {
         WebElement element = driver.findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static void switchTab(){
+        String firstTab = driver.getWindowHandle();
+        for (String tab : driver.getWindowHandles()) {
+            if (!tab.equals(firstTab)) {
+                driver.switchTo().window(tab);
+            }
+        }
     }
 }
