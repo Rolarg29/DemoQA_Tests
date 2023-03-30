@@ -2,7 +2,7 @@
   "chromeBrowser": [
     {
       "name": "Chrome",
-      "options": [      "--incognito",
+      "options": ["--incognito",
         "--remote-allow-origins=*",
         "--lang=en"
       ]
