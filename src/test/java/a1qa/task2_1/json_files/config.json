@@ -1,11 +1,13 @@
 {
-  "browser": "chrome",
-  "chrome_options": {
-    "arguments": [
-      "--incognito",
-      "--remote-allow-origins=*"
-    ]
-  },
+  "chromeBrowser": [
+    {
+      "name": "Chrome",
+      "options": [      "--incognito",
+        "--remote-allow-origins=*",
+        "--lang=en"
+      ]
+    }
+  ],
   "implicit_wait_time": 10,
   "explicit_wait_time": 10,
   "base_url": "https://store.steampowered.com/",

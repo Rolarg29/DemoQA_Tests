@@ -1,21 +1,18 @@
 package a1qa.task2_1;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import static a1qa.task2_1.BaseUtil.click;
+
 import static a1qa.task2_1.BaseUtil.findElement;
 
 
 public class HomePage {
-    private static final WebDriver driver = WebDriverSingleton.driver;
 
     // Home page and privacy policy links
     public static final String mainUrl = "https://store.steampowered.com/";
-    public static final String mainTitle = "Welcome to Steam";
     public static final String policyTitle = "Privacy Policy Agreement";
-    public static final By privacyPolicyLink = By.xpath("//a[contains(text(),'Privacy Policy')]");
     public static final By privacyPolicyClick = By.linkText("Privacy Policy");
-    public static final By privacyTitle = By.xpath("//div[contains(text(),'Privacy Policy Agreement')]");
+    public static final By revDate = By.xpath("//div/div[7]/div[6]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/i[3]");
 
     //Privacy Policy Language list
     public static boolean allLanguagesDisplayed = false;

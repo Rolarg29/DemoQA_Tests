@@ -8,25 +8,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BaseUtil {
     static WebDriver driver = WebDriverSingleton.driver;
 
     //finds an element by any locator given
     public static WebElement findElement(By locator) {
-        WebElement element = driver.findElement(locator);
         return driver.findElement(locator);
-    }
-
-    //returns a list of all elements with the given locator
-    public static List<WebElement> findElements(By locator) {
-        return driver.findElements(locator);
-    }
-
-    //Get the text of the element
-    public static String getText(WebElement element) {
-        return element.getText();
     }
 
     //Get the text of the element using a locator
@@ -44,35 +34,14 @@ public class BaseUtil {
         driver.findElement(locator).click();
     }
 
-    //checks if element is displayed
-    public static boolean isDisplayed(By locator) {
-        try{
-            return driver.findElement(locator).isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
-    }
-
     //initializes the browser into a website
     public static void visit(String url) {
         driver.get(url);
     }
 
-    //wait for an element to be displayed
-    public static void waitForView(By locator) {//creado por mi
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
     public static void waitForClickable(By locator) {//creado por mi
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    //Scrolls down to find element
-    public static void scrollTo(By locator) {
-        WebElement element = driver.findElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public static void scrollToEnd() {
@@ -88,5 +57,63 @@ public class BaseUtil {
             }
         }
     }
+
+    public static String page(){
+        return driver.getCurrentUrl();
+    }
+
+    public static boolean textMatchBool(String text, String patron){
+        Pattern pattern = Pattern.compile(patron);
+        Matcher matcher = pattern.matcher(text);
+        return matcher.find();
+    }
+//    public static String textMatchSt(String text, String patron){
+//        Pattern pattern = Pattern.compile(patron);
+//        Matcher matcher = pattern.matcher(text);
+//        return "match";
+//    }
+
+    public static String attribute(By locator, String text){
+        return driver.findElement(locator).getAttribute(text);
+    }
+    public static String replaceAtt(By locator){
+        String platformImg = attribute(locator, "class");
+        switch (platformImg) {
+            case "platform_img win" -> {
+                return "Windows";
+            }
+            case "platform_img mac" -> {
+                return "Mac";
+            }
+            case "platform_img linux" -> {
+                return "Linux";
+            }
+            case "platform_img streamingvideoseries" -> {
+                return "Streaming Videoseries";
+            }
+        }
+        return platformImg;
+    }
+
+//    @DataProvider(name = "dp")
+//     public static String[] readJson() throws IOException, ParseException {
+//        JSONParser jsonParser = new JSONParser();
+//        FileReader reader = new FileReader(".\\json_files\\config.json");
+//        Object obj = jsonParser.parse(reader);
+//        JSONObject driverConfigJsonObj = (JSONObject) obj;
+//        JSONArray driverConfigArray =  (JSONArray) driverConfigJsonObj.get("chromeBrowser");
+//
+//        String[] arr = new String[driverConfigArray.length()];
+//
+//        for(int i=0; i<arr.length; i++)
+//        {
+//            JSONObject browser = (JSONObject)driverConfigArray.get(i);
+//            String name = (String) browser.get("name");
+//            String options = (String) browser.get("options");
+//
+//            arr[i] = name + "," + options;
+//        }
+//        return arr;
+//    }
 
 }
