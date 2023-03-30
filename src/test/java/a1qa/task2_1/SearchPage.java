@@ -42,7 +42,6 @@ public class SearchPage {
     public static final By searchResultPrice2 = By.xpath("//a[2]//div[contains(@class,'search_price')]");
 
 
-
     public static JSONArray datos = new JSONArray();
 
     public static void gameData() {
@@ -62,9 +61,7 @@ public class SearchPage {
 
         datos.add(result1);
         datos.add(result2);
-
     }
-//        String datosString = datos.toString();
 
         // Escribir los datos en un archivo JSON
     public static void jsonCreate(){
@@ -151,5 +148,3 @@ public class SearchPage {
     }
 
 }
-
-//

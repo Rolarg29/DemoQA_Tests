@@ -94,26 +94,4 @@ public class BaseUtil {
         }
         return platformImg;
     }
-
-//    @DataProvider(name = "dp")
-//     public static String[] readJson() throws IOException, ParseException {
-//        JSONParser jsonParser = new JSONParser();
-//        FileReader reader = new FileReader(".\\json_files\\config.json");
-//        Object obj = jsonParser.parse(reader);
-//        JSONObject driverConfigJsonObj = (JSONObject) obj;
-//        JSONArray driverConfigArray =  (JSONArray) driverConfigJsonObj.get("chromeBrowser");
-//
-//        String[] arr = new String[driverConfigArray.length()];
-//
-//        for(int i=0; i<arr.length; i++)
-//        {
-//            JSONObject browser = (JSONObject)driverConfigArray.get(i);
-//            String name = (String) browser.get("name");
-//            String options = (String) browser.get("options");
-//
-//            arr[i] = name + "," + options;
-//        }
-//        return arr;
-//    }
-
 }
