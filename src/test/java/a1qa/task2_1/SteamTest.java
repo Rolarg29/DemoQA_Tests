@@ -70,7 +70,7 @@ public class SteamTest {
 
     @AfterSuite
     public void tearDown(){
-//        WebDriverSingleton.quit();
+        WebDriverSingleton.quit();
     }
 
 }
