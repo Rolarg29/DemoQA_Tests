@@ -140,11 +140,11 @@ public class SearchPage {
             secondMatches = true;
         } else {
             // Los datos no coinciden
-            System.out.println("Datos no coinciden para el primer objeto");
+            System.out.println("Datos no coinciden para el segundo objeto");
 
         }
 
-        return firstMatches = secondMatches = true;
+        return firstMatches == secondMatches;
     }
 
 }

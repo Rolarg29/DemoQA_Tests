@@ -76,6 +76,8 @@ public class BaseUtil {
     public static String attribute(By locator, String text){
         return driver.findElement(locator).getAttribute(text);
     }
+
+
     public static String replaceAtt(By locator){
         String platformImg = attribute(locator, "class");
         switch (platformImg) {
