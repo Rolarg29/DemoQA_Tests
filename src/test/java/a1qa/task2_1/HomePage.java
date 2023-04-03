@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class HomePage {
 
     // Home page and privacy policy links
-    public static final String mainUrl = "https://store.steampowered.com/";
+    public static final String mainUrl = (String) WebDriverSingleton.config.get("base_url");
     public static final String policyTitle = "Privacy Policy Agreement";
     public static final By privacyPolicyClick = By.linkText("Privacy Policy");
     public static final By revisionDate = By.xpath("//div/div[7]/div[6]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/i[3]");
