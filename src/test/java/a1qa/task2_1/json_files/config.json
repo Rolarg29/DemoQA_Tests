@@ -12,5 +12,5 @@
   "explicit_wait_time": 10,
   "base_url": "https://store.steampowered.com/",
   "search_query": "Dota 2",
-  "json_file_path": "results.json"
+  "json_file_path": "gameResults.json"
 }

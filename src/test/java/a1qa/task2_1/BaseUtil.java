@@ -39,11 +39,6 @@ public class BaseUtil {
         driver.get(url);
     }
 
-    public static void waitForClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
     public static void scrollToEnd() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");    }
@@ -86,7 +81,7 @@ public class BaseUtil {
                 return "Linux";
             }
             case "platform_img streamingvideoseries" -> {
-                return "Streaming Video series";
+                return "Streaming Video Series";
             }
         }
         return platformImg;

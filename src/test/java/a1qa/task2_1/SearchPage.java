@@ -63,7 +63,6 @@ public class SearchPage {
         datos.add(result2);
     }
 
-        // Escribir los datos en un archivo JSON
     public static void jsonCreate(){
         try (FileWriter fileWriter = new FileWriter("gameResults.json")) {
             fileWriter.write(datos.toJSONString());
@@ -71,6 +70,7 @@ public class SearchPage {
             e.printStackTrace();
         }
     }
+
     public static boolean compareData() {
         // Leer el archivo JSON
         JSONArray jsonArray = null;

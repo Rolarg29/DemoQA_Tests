@@ -18,19 +18,19 @@ public class SteamTest {
         //Privacy Policy open in a new tab
         BaseUtil.visit(HomePage.mainUrl);
         BaseUtil.scrollToEnd();
-        BaseUtil.waitForClickable(HomePage.privacyPolicyClick);
+        Waits.waitForClickable(HomePage.privacyPolicyClick);
         BaseUtil.click(HomePage.privacyPolicyClick);
         BaseUtil.switchTab();
         Assert.assertEquals(WebDriverSingleton.driver.getTitle(), HomePage.policyTitle, "They are NOT the same");
 
         //Switch language elements list displayed
         HomePage.selectLang(HomePage.languages);
-        Assert.assertTrue(HomePage.allLanguagesDisplayed);
+        Assert.assertTrue(HomePage.allLanguagesDisplayed, "There are missing language elements");
 
         //Policy revision signed this year
         BaseUtil.scrollToEnd();
         String year = BaseUtil.getText(HomePage.revisionDate);
-        Assert.assertTrue(BaseUtil.textMatchBool(year, "2023"));
+        Assert.assertTrue(BaseUtil.textMatchBool(year, "2023"), "There is NO policy signed by this year");
     }
 
     @Test
@@ -61,7 +61,7 @@ public class SteamTest {
         Assert.assertEquals(resultSearchBox2, game2, "This is NOT the same name as the search");
 
         //Result list contains 2 stored items from the previous search. All stored data matched
-        Assert.assertTrue(SearchPage.compareData());
+        Assert.assertTrue(SearchPage.compareData(), "The data stored do not match the new result list");
     }
 
     @AfterSuite
