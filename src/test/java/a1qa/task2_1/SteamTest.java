@@ -5,10 +5,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import static a1qa.task2_1.BaseUtil.*;
-import static a1qa.task2_1.HomePage.*;
-import static a1qa.task2_1.SearchPage.*;
-
 
 public class SteamTest {
 
@@ -20,52 +16,52 @@ public class SteamTest {
     @Test
     public void testPrivacyPolicy(){
         //Privacy Policy open in a new tab
-        visit(mainUrl);
-        scrollToEnd();
-        waitForClickable(privacyPolicyClick);
-        click(privacyPolicyClick);
-        switchTab();
-        Assert.assertEquals(driver.getTitle(), policyTitle, "They are NOT the same");
+        BaseUtil.visit(HomePage.mainUrl);
+        BaseUtil.scrollToEnd();
+        BaseUtil.waitForClickable(HomePage.privacyPolicyClick);
+        BaseUtil.click(HomePage.privacyPolicyClick);
+        BaseUtil.switchTab();
+        Assert.assertEquals(WebDriverSingleton.driver.getTitle(), HomePage.policyTitle, "They are NOT the same");
 
         //Switch language elements list displayed
-        selectLang(languages);
-        Assert.assertTrue(allLanguagesDisplayed);
+        HomePage.selectLang(HomePage.languages);
+        Assert.assertTrue(HomePage.allLanguagesDisplayed);
 
         //Policy revision signed this year
-        scrollToEnd();
-        String year = getText(revDate);
-        Assert.assertTrue(textMatchBool(year, "2023"));
+        BaseUtil.scrollToEnd();
+        String year = BaseUtil.getText(HomePage.revisionDate);
+        Assert.assertTrue(BaseUtil.textMatchBool(year, "2023"));
     }
 
     @Test
     public void gameSearch() {
         //Result page is open
-        visit(mainUrl);
-        type(gameName, searchBox);
-        click(searchButton);
-        Assert.assertEquals(page(), searchResultPage, "This is NOT the result page");
+        BaseUtil.visit(HomePage.mainUrl);
+        BaseUtil.type(SearchPage.gameName, SearchPage.searchBox);
+        BaseUtil.click(SearchPage.searchButton);
+        Assert.assertEquals(BaseUtil.page(), SearchPage.searchResultPage, "This is NOT the result page");
 
         //Search box on result contains searched name
-        String resultSearchBox = attribute(innerSearchBox, "value");
-        Assert.assertEquals(resultSearchBox, gameName, "This is NOT the same name as the search");
+        String resultSearchBox = BaseUtil.attribute(SearchPage.innerSearchBox, "value");
+        Assert.assertEquals(resultSearchBox, SearchPage.gameName, "This is NOT the same name as the search");
 
         //First name equals searched name
-        String game1 = getText(firstResultName);
-        String game2 = getText(secondResultName);
-        Assert.assertEquals(game1, gameName, "The first result is different");
+        String game1 = BaseUtil.getText(SearchPage.firstResultName);
+        String game2 = BaseUtil.getText(SearchPage.secondResultName);
+        Assert.assertEquals(game1, SearchPage.gameName, "The first result is different");
 
         //information saved in a json file
-        gameData();
-        jsonCreate();
+        SearchPage.gameData();
+        SearchPage.jsonCreate();
 
         //Search box on result contains searched name
-        type(game2, searchBox);
-        click(searchButton);
-        String resultSearchBox2 = attribute(innerSearchBox, "value");
+        BaseUtil.type(game2, SearchPage.searchBox);
+        BaseUtil.click(SearchPage.searchButton);
+        String resultSearchBox2 = BaseUtil.attribute(SearchPage.innerSearchBox, "value");
         Assert.assertEquals(resultSearchBox2, game2, "This is NOT the same name as the search");
 
         //Result list contains 2 stored items from the previous search. All stored data matched
-        Assert.assertTrue(compareData());
+        Assert.assertTrue(SearchPage.compareData());
     }
 
     @AfterSuite

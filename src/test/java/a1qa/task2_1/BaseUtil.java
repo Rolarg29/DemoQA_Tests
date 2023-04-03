@@ -39,7 +39,7 @@ public class BaseUtil {
         driver.get(url);
     }
 
-    public static void waitForClickable(By locator) {//creado por mi
+    public static void waitForClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
@@ -67,11 +67,6 @@ public class BaseUtil {
         Matcher matcher = pattern.matcher(text);
         return matcher.find();
     }
-//    public static String textMatchSt(String text, String patron){
-//        Pattern pattern = Pattern.compile(patron);
-//        Matcher matcher = pattern.matcher(text);
-//        return "match";
-//    }
 
     public static String attribute(By locator, String text){
         return driver.findElement(locator).getAttribute(text);
@@ -91,7 +86,7 @@ public class BaseUtil {
                 return "Linux";
             }
             case "platform_img streamingvideoseries" -> {
-                return "Streaming Videoseries";
+                return "Streaming Video series";
             }
         }
         return platformImg;

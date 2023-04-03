@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static a1qa.task2_1.BaseUtil.*;
+
 
 public class SearchPage {
 
@@ -29,7 +29,7 @@ public class SearchPage {
     public static final By searchResultPlatformOne = By.xpath("//span[contains(@class,'platform_img')]");
     public static final By searchResultPlatformTwo = By.xpath("//span[contains(@class,'platform_img')][2]");
     public static final By searchResultPlatformThree = By.xpath("//span[contains(@class,'platform_img')][3]");
-    public static String[] platformName = {replaceAtt(searchResultPlatformOne), replaceAtt(searchResultPlatformTwo), replaceAtt(searchResultPlatformThree)};
+    public static String[] platformName = {BaseUtil.replaceAtt(searchResultPlatformOne), BaseUtil.replaceAtt(searchResultPlatformTwo), BaseUtil.replaceAtt(searchResultPlatformThree)};
     public static final By searchResultReleaseDate = By.xpath("//div[contains(@class,'search_released')]");
     public static final By searchResultReview = By.xpath("//span[contains(@class,'search_review_summary')]");
     public static final By searchResultPrice = By.xpath("//div[contains(@class,'search_price')]");
@@ -46,18 +46,18 @@ public class SearchPage {
 
     public static void gameData() {
         JSONObject result1 = new JSONObject();
-        result1.put("name", getText(searchResultName));
+        result1.put("name", BaseUtil.getText(searchResultName));
         result1.put("platform", Arrays.toString(platformName));
-        result1.put("releaseDate", getText(searchResultReleaseDate));
-        result1.put("reviewSummaryResult", attribute(searchResultReview, "data-tooltip-html").replaceAll("<br>", " "));
-        result1.put("price", getText(searchResultPrice));
+        result1.put("releaseDate", BaseUtil.getText(searchResultReleaseDate));
+        result1.put("reviewSummaryResult", BaseUtil.attribute(searchResultReview, "data-tooltip-html").replaceAll("<br>", " "));
+        result1.put("price", BaseUtil.getText(searchResultPrice));
 
         JSONObject result2 = new JSONObject();
-        result2.put("name", getText(searchResultName2));
-        result2.put("platform", replaceAtt(searchResultPlatform2));
-        result2.put("releaseDate", getText(searchResultReleaseDate2));
-        result2.put("reviewSummaryResult", attribute(searchResultReview2, "data-tooltip-html").replaceAll("<br>", " "));
-        result2.put("price", getText(searchResultPrice2));
+        result2.put("name", BaseUtil.getText(searchResultName2));
+        result2.put("platform", BaseUtil.replaceAtt(searchResultPlatform2));
+        result2.put("releaseDate", BaseUtil.getText(searchResultReleaseDate2));
+        result2.put("reviewSummaryResult", BaseUtil.attribute(searchResultReview2, "data-tooltip-html").replaceAll("<br>", " "));
+        result2.put("price", BaseUtil.getText(searchResultPrice2));
 
         datos.add(result1);
         datos.add(result2);
@@ -84,21 +84,21 @@ public class SearchPage {
         boolean secondMatches = false;
 
         //New search data -> Data 2 Player Profiles
-        String firstName = getText(searchResultName);
-        String firstPlatform = replaceAtt(searchResultPlatformOne);
-        String firstReleaseDate = getText(searchResultReleaseDate);
-        String firstReview = attribute(searchResultReview, "data-tooltip-html").replaceAll("<br>", " ");
-        String firstPrice = getText(searchResultPrice);
+        String firstName = BaseUtil.getText(searchResultName);
+        String firstPlatform = BaseUtil.replaceAtt(searchResultPlatformOne);
+        String firstReleaseDate = BaseUtil.getText(searchResultReleaseDate);
+        String firstReview = BaseUtil.attribute(searchResultReview, "data-tooltip-html").replaceAll("<br>", " ");
+        String firstPrice = BaseUtil.getText(searchResultPrice);
 
         //Dota 2
-        String secondName = getText(searchResultName2);
+        String secondName = BaseUtil.getText(searchResultName2);
         By secondResultPlatformOne = By.xpath("//a[2]//span[contains(@class,'platform_img')]");
         By secondResultPlatformTwo = By.xpath("//a[2]//span[contains(@class,'platform_img')][2]");
         By secondResultPlatformThree = By.xpath("//a[2]//span[contains(@class,'platform_img')][3]");
-        String[] secondPlatform = {replaceAtt(secondResultPlatformOne), replaceAtt(secondResultPlatformTwo), replaceAtt(secondResultPlatformThree)};
-        String secondReleaseDate = getText(searchResultReleaseDate2);
-        String secondReview = attribute(searchResultReview2, "data-tooltip-html").replaceAll("<br>", " ");
-        String secondPrice = getText(searchResultPrice2);
+        String[] secondPlatform = {BaseUtil.replaceAtt(secondResultPlatformOne), BaseUtil.replaceAtt(secondResultPlatformTwo), BaseUtil.replaceAtt(secondResultPlatformThree)};
+        String secondReleaseDate = BaseUtil.getText(searchResultReleaseDate2);
+        String secondReview = BaseUtil.attribute(searchResultReview2, "data-tooltip-html").replaceAll("<br>", " ");
+        String secondPrice = BaseUtil.getText(searchResultPrice2);
 
         assert jsonArray != null;
         JSONObject jsonObject = (JSONObject) jsonArray.get(0);
