@@ -15,4 +15,5 @@ public class ConfigDataFromJSONFile {
             return (JSONObject) obj;
         }
     }
+
 }

@@ -16,7 +16,7 @@ public class SearchPage {
 
     // Elements
     public static final By searchBox = By.id("store_nav_search_term");
-    public static final String gameName = "Dota 2";
+    public static final String gameName = (String) WebDriverSingleton.config.get("search_query");
     public static final By searchButton = By.cssSelector("img[src='https://store.akamai.steamstatic.com/public/images/blank.gif']");
     public static final String searchResultPage = "https://store.steampowered.com/search/?term=Dota+2";
     public static final By innerSearchBox = By.xpath("//div[@class='searchbar_left']//input[@id='term']");
@@ -76,7 +76,7 @@ public class SearchPage {
         JSONArray jsonArray = null;
         try {
             JSONParser parser = new JSONParser();
-            jsonArray = (JSONArray) parser.parse(new FileReader("gameResults.json"));
+            jsonArray = (JSONArray) parser.parse(new FileReader((String) WebDriverSingleton.config.get("json_file_path")));
         } catch (Exception e) {
             e.printStackTrace();
         }
