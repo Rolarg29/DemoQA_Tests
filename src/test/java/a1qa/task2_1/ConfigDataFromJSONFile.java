@@ -15,5 +15,8 @@ public class ConfigDataFromJSONFile {
             return (JSONObject) obj;
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/task2.2
 }
