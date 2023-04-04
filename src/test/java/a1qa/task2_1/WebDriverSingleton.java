@@ -30,11 +30,9 @@ public class WebDriverSingleton {
     static JSONObject chromeOptions = (JSONObject) chromeBrowser.get(0);
     static JSONArray options = (JSONArray) chromeOptions.get("options");
     static String name = (String) chromeOptions.get("name");
-
-
     public static String browserName = name;
 
-    public WebDriverSingleton() throws ParseException {
+    public WebDriverSingleton() {
     }
 
     public static void initialize(){
