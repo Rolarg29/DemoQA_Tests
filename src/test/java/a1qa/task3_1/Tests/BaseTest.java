@@ -32,7 +32,7 @@ public class BaseTest {
 
     @AfterSuite
     public void tearDown() {
-//        WebDriverFactory.quitDriver();
+        WebDriverFactory.quitDriver();
     }
 
 
