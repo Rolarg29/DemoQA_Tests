@@ -4,6 +4,7 @@
         <classes>
             <class name="a1qa.task3_1.Tests.Scenarios.AlertsTest"/>
             <class name="a1qa.task3_1.Tests.Scenarios.IframeTest"/>
+            <class name="a1qa.task3_1.Tests.Scenarios.TablesTest"/>
         </classes>
     </test>
 </suite>

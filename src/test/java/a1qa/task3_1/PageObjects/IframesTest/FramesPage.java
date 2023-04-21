@@ -1,5 +1,6 @@
-package a1qa.task3_1.PageObjects;
+package a1qa.task3_1.PageObjects.IframesTest;
 
+import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.Utilities.BaseElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class FramesPage extends BaseForm{
+public class FramesPage extends BaseForm {
 
     @FindBy(xpath = "//div[contains(text(),'Frames')]")
     public static WebElement frameForm;

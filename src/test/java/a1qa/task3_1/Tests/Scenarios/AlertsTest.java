@@ -1,8 +1,8 @@
 package a1qa.task3_1.Tests.Scenarios;
 
 
-import a1qa.task3_1.PageObjects.AlertsPage;
-import a1qa.task3_1.PageObjects.AlertsWindowsPage;
+import a1qa.task3_1.PageObjects.AlertsTest.AlertsPage;
+import a1qa.task3_1.PageObjects.AlertsTest.AlertsWindowsPage;
 import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.PageObjects.MainPage;
 import a1qa.task3_1.Tests.BaseTest;

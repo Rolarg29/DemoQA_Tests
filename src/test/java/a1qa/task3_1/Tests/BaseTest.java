@@ -2,6 +2,11 @@ package a1qa.task3_1.Tests;
 
 import a1qa.task3_1.Factory.WebDriverFactory;
 import a1qa.task3_1.PageObjects.*;
+import a1qa.task3_1.PageObjects.AlertsTest.AlertsPage;
+import a1qa.task3_1.PageObjects.AlertsTest.AlertsWindowsPage;
+import a1qa.task3_1.PageObjects.IframesTest.FramesPage;
+import a1qa.task3_1.PageObjects.IframesTest.NestedFramesPage;
+import a1qa.task3_1.PageObjects.TablesTest.WebTablesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
@@ -19,6 +24,7 @@ public class BaseTest {
         PageFactory.initElements(driver, AlertsPage.class);
         PageFactory.initElements(driver, NestedFramesPage.class);
         PageFactory.initElements(driver, FramesPage.class);
+        PageFactory.initElements(driver, WebTablesPage.class);
 
 
 

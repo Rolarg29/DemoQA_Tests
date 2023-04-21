@@ -1,5 +1,6 @@
-package a1qa.task3_1.PageObjects;
+package a1qa.task3_1.PageObjects.AlertsTest;
 
+import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.Utilities.BaseElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
