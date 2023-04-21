@@ -10,7 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class TablesTest extends BaseTest {
 
@@ -26,17 +25,20 @@ public class TablesTest extends BaseTest {
         Assert.assertTrue(WebTablesPage.webTablesOpen(), "The Web Tables page is NOT open");
 
         //step 3
-        //User Number 1
         WebTablesPage.clickAddButton();
         Assert.assertTrue(WebTablesPage.registrationFormOpen(), "The registration form is NOT enabled");
+
+        //step 4
+        //User number 1
         WebTablesPage.fillRegistrationForm(TableData.userNumber1);
         WebTablesPage.clickSubmitButton();
-
         //User Number 2
         WebTablesPage.clickAddButton();
         WebTablesPage.fillRegistrationForm(TableData.userNumber2);
+        //Submit form
         WebTablesPage.clickSubmitButton();
-
+        //Registration form closed
+        Assert.assertTrue(WebTablesPage.registrationFormClosed());
 
 
 

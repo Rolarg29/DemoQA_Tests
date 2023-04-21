@@ -3,6 +3,7 @@ package a1qa.task3_1.PageObjects.TablesTest;
 import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.Utilities.BaseElement;
 import a1qa.task3_1.Utilities.DDT.TableData;
+import a1qa.task3_1.Utilities.Waits;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,6 +72,10 @@ public class WebTablesPage extends BaseForm {
     public static boolean registrationFormOpen() {
         return registrationForm.isEnabled();
     }
+    public static boolean registrationFormClosed() {
+        return Waits.waitForInvisible(registrationForm);
+    }
+
 
     public static void fillRegistrationForm(String userNo){
         if (registrationFormOpen()&&Objects.equals(userNo, "1")){

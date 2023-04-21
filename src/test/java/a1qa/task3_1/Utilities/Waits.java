@@ -30,6 +30,10 @@ public class Waits {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static boolean waitForInvisible(WebElement element) {
+        return wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
     public static void waitForFrame(By locator) {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
     }
