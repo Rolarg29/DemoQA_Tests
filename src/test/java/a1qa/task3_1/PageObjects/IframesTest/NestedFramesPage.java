@@ -2,6 +2,7 @@ package a1qa.task3_1.PageObjects.IframesTest;
 
 import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.Utilities.BaseElement;
+import a1qa.task3_1.Utilities.Waits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,7 @@ public class NestedFramesPage extends BaseForm {
 
 
     public static String parentFrameMsg(){
+        Waits.waitForClickable(parentFrameMsg);
         BaseElement.scrollTo(parentFrameMsg);
         driver.switchTo().frame(parentFrameMsg);
         String iFrameMsg = driver.findElement(By.xpath("//body")).getText();
