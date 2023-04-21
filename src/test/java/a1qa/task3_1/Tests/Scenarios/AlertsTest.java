@@ -19,8 +19,8 @@ public class AlertsTest extends BaseTest {
         Assert.assertTrue(MainPage.toolsQaLogoDisplayed(), "The element from Main Page is NOT displayed");
 
         //step 2
-        MainPage.clickAFWButton();
-        AlertsWindowsPage.clickAlertsButton();
+        MainPage.clickAlertsFramesWindowsButton();
+        AlertsWindowsPage.clickAlertsMenu();
         Assert.assertTrue(AlertsPage.alertsFormsDisplayed(), "The Alerts forms are NOT displayed");
 
         //step 3

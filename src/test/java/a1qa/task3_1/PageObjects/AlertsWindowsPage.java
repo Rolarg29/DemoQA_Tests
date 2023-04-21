@@ -11,13 +11,31 @@ public class AlertsWindowsPage extends BaseForm {
     @FindBy(xpath = "//span[normalize-space()='Alerts']")
     public static WebElement alertsButton;
 
+    @FindBy(xpath = "//span[normalize-space()='Nested Frames']")
+    public static WebElement nestedFramesButton;
+
+    @FindBy(xpath = "//span[normalize-space()='Frames']")
+    public static WebElement framesButton;
+
+
     public AlertsWindowsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public static void clickAlertsButton(){
-//        BaseElement.scrollTo(AlertsWindowsPage.alertsButton);
+    public static void clickAlertsMenu(){
         BaseElement.click(AlertsWindowsPage.alertsButton);
     }
+
+    public static void clickNestedFramesMenu(){
+        BaseElement.scrollTo(nestedFramesButton);
+        BaseElement.click(nestedFramesButton);
+    }
+
+    public static void clickFramesMenu(){
+        BaseElement.scrollTo(framesButton);
+        BaseElement.click(framesButton);
+    }
+
+
 }

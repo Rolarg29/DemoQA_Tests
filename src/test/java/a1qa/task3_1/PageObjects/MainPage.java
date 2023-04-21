@@ -26,7 +26,7 @@ public class MainPage extends BaseForm{
         return toolsQaLogo.isDisplayed();
     }
 
-    public static void clickAFWButton(){
+    public static void clickAlertsFramesWindowsButton(){
         BaseElement.scrollTo(MainPage.alertFrameWinButton);
         BaseElement.click(MainPage.alertFrameWinButton);
     }
@@ -34,9 +34,4 @@ public class MainPage extends BaseForm{
     public static void waitAFWButton(){
         Waits.waitForClickable(MainPage.alertFrameWinButton);
     }
-
-
-
-
-
 }

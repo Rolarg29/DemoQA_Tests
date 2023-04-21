@@ -1,9 +1,6 @@
 package a1qa.task3_1.Utilities;
 
 import a1qa.task3_1.Factory.WebDriverFactory;
-import a1qa.task3_1.Factory.WebDriverSingleton;
-import a1qa.task3_1.PageObjects.MainPage;
-import a1qa.task3_1.Tests.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

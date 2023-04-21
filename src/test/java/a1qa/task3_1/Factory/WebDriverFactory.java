@@ -27,7 +27,7 @@ public class WebDriverFactory {
                     throw new IllegalArgumentException("Invalid browser: " + browser);
             }
             driver.manage().window().maximize();
-            driver.manage().deleteAllCookies();
+//            driver.manage().deleteAllCookies();
         }
         return driver;
     }

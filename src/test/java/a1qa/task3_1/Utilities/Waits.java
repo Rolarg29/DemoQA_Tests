@@ -30,5 +30,10 @@ public class Waits {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForFrame(By locator) {
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
+    }
+
+
 }
 
