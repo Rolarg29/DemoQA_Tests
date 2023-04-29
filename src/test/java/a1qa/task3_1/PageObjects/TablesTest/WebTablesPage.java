@@ -1,6 +1,5 @@
 package a1qa.task3_1.PageObjects.TablesTest;
 
-import a1qa.task3_1.PageObjects.AlertsTest.AlertsWindowsPage;
 import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.Utilities.DDT.TableData;
 import a1qa.task3_1.Utilities.Elements.BaseElement;
@@ -9,9 +8,6 @@ import a1qa.task3_1.Utilities.Waits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 import java.util.Objects;
 
 public class WebTablesPage extends BaseForm {

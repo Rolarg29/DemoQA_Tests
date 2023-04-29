@@ -28,13 +28,5 @@ public class IframeTest extends BaseTest {
         AlertsWindowsPage.clickFramesMenu();
         Assert.assertTrue(FramesPage.framesOpen(), "The Frames page is NOT displayed");
         Assert.assertEquals(FramesPage.upperFrameMessage(), FramesPage.lowerFrameMessage());
-
-
-
-
-
-
-
-
     }
 }

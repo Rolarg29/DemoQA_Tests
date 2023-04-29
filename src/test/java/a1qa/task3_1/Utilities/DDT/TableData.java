@@ -3,7 +3,6 @@ package a1qa.task3_1.Utilities.DDT;
 import org.apache.commons.csv.CSVFormat;
 import org.testng.annotations.DataProvider;
 import java.io.IOException;
-
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import java.io.Reader;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class TableData {
 
-    public TableData() throws IOException {
+    public TableData() {
     }
 
     @DataProvider(name = "tableData")

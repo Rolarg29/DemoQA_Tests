@@ -42,5 +42,4 @@ public class AlertsTest extends BaseTest {
         AlertsPage.clickOk();
         Assert.assertEquals(AlertsPage.getResultText(AlertsPage.alertPromptResult), "You entered " + randomText);
     }
-
 }

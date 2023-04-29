@@ -78,5 +78,4 @@ public class NestedFramesPage extends BaseForm {
             BaseElement.switchToParentFrame();
         }
     }
-
 }

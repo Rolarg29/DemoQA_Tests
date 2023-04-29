@@ -2,7 +2,6 @@ package a1qa.task3_1.Utilities.Elements;
 
 import a1qa.task3_1.Factory.WebDriverFactory;
 import org.openqa.selenium.*;
-
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +14,6 @@ public class BaseElement {
     static JavascriptExecutor js = (JavascriptExecutor) driver;
 
     BaseElement baseElement = new BaseElement(driver);
-
 
     //finds an element by any locator given
     public static WebElement findElement(By locator) {
@@ -117,6 +115,5 @@ public class BaseElement {
         alert.sendKeys(randomString);
         return randomString;
     }
-
 }
 

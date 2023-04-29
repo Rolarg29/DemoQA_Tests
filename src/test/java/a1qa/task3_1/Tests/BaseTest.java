@@ -1,9 +1,7 @@
 package a1qa.task3_1.Tests;
 
 import a1qa.task3_1.Factory.WebDriverFactory;
-import a1qa.task3_1.PageObjects.IframesTest.FramesPage;
 import a1qa.task3_1.Utilities.Logger.LoggerUtil;
-import org.junit.jupiter.api.BeforeEach;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -30,7 +28,6 @@ public class BaseTest {
         String testName = context.getCurrentXmlTest().getName();
         logger.info("FINISHING TEST: " + testName);
     }
-
 
     @AfterSuite
     public void tearDown() {

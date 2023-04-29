@@ -26,8 +26,4 @@ public class LoggerUtil {
     public void debug(String message) {
         logger.debug(message);
     }
-
-    public void trace(String message) {
-        logger.trace(message);
-    }
 }

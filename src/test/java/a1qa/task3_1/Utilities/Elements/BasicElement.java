@@ -6,6 +6,4 @@ import org.openqa.selenium.WebDriver;
 public abstract class BasicElement {
     By uniqueLocator;
     WebDriver driver;
-
-
 }
