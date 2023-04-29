@@ -1,17 +1,18 @@
-package a1qa.task3_1.Utilities;
+package a1qa.task3_1.Utilities.Elements;
 
 import a1qa.task3_1.Factory.WebDriverFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
+import java.util.List;
+import java.util.Random;
 
 public class BaseElement {
-    static WebDriver driver = WebDriverFactory.initialize();
+    public static WebDriver driver = WebDriverFactory.initialize();
 
     public BaseElement(WebDriver driver) {
         BaseElement.driver = WebDriverFactory.initialize();
     }
+    static JavascriptExecutor js = (JavascriptExecutor) driver;
 
     BaseElement baseElement = new BaseElement(driver);
 
@@ -19,6 +20,9 @@ public class BaseElement {
     //finds an element by any locator given
     public static WebElement findElement(By locator) {
         return driver.findElement(locator);
+    }
+    public static List<WebElement> findElements(By locator) {
+        return driver.findElements(locator);
     }
 
     //Get the text of the element using a locator
@@ -29,11 +33,12 @@ public class BaseElement {
     public static String getText(WebElement element) {
         return element.getText();
     }
-
-
     //type text in element or input
     public static void type(String inputText, By locator) {
         driver.findElement(locator).sendKeys(inputText);
+    }
+    public static void clear(By locator) {
+        driver.findElement(locator).clear();
     }
 
     //clicks on element
@@ -43,29 +48,48 @@ public class BaseElement {
     }
     public static void click(WebElement element) {
         element.click();
-
     }
 
-    //initializes the browser into a website
+    public static boolean isDisplayed(WebElement element) {
+        return element.isDisplayed();
+    }
+
+    public static boolean isDisplayed(By locator) {
+        return driver.findElement(locator).isDisplayed();
+    }
+    public static boolean isEnabled(By locator) {
+        return driver.findElement(locator).isEnabled();
+    }
+
     public static void visit(String url) {
         driver.get(url);
     }
 
+    public static Alert switchToAlert(){
+        return driver.switchTo().alert();
+    }
+    public static void switchToFrame(WebElement element){
+        driver.switchTo().frame(element);
+    }
+    public static void switchToFrame(int index){
+        driver.switchTo().frame(index);
+    }
+    public static void switchToParentFrame(){
+        driver.switchTo().parentFrame();
+    }
+
     public static void scrollToEnd() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
     public static void scrollTo(By locator) {
         WebElement element = driver.findElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    public static void scrollTo(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static void scrollTo(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
 
     public static void switchTab() {
         String firstTab = driver.getWindowHandle();
@@ -75,5 +99,24 @@ public class BaseElement {
             }
         }
     }
+
+    public static String alertRandomText() {
+        Alert alert = driver.switchTo().alert();
+
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder();
+
+        int length = 10; // set the length of the string
+        String characters = "abcdefghijklmnopqrstuvwxyz";
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            builder.append(characters.charAt(index));
+        }
+        String randomString = builder.toString();
+        alert.sendKeys(randomString);
+        return randomString;
+    }
+
 }
 

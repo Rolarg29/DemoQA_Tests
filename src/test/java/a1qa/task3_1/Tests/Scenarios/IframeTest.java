@@ -5,7 +5,7 @@ import a1qa.task3_1.PageObjects.AlertsTest.AlertsWindowsPage;
 import a1qa.task3_1.PageObjects.IframesTest.FramesPage;
 import a1qa.task3_1.PageObjects.IframesTest.NestedFramesPage;
 import a1qa.task3_1.Tests.BaseTest;
-import a1qa.task3_1.Utilities.BaseElement;
+import a1qa.task3_1.Utilities.Elements.BaseElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

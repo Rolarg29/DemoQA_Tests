@@ -1,39 +1,34 @@
 package a1qa.task3_1.PageObjects;
 
-import a1qa.task3_1.Utilities.BaseElement;
+import a1qa.task3_1.Utilities.Elements.BaseElement;
+import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import a1qa.task3_1.Utilities.Waits;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class MainPage extends BaseForm{
 
-    @FindBy(xpath = "//h5[normalize-space()='Alerts, Frame & Windows']")
-    public static WebElement alertFrameWinButton;
+    public static By alertFrameWinButton = By.xpath("//h5[normalize-space()='Alerts, Frame & Windows']");
 
-    @FindBy(xpath = "//h5[normalize-space()='Elements']")
-    public static WebElement elementsButton;
+    public static By elementsButton = By.xpath("//h5[normalize-space()='Elements']");
 
-    @FindBy(xpath = "//img[contains(@src, 'oolsqa')]")
-    public static WebElement toolsQaLogo;
+    public static By toolsQaLogo = By.xpath("//img[contains(@src, 'oolsqa')]");
 
-    public MainPage(WebDriver driver) {
+    public MainPage(WebDriver driver, LoggerUtil logger) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public static boolean toolsQaLogoDisplayed(){
-        Waits.waitForPresence(MainPage.toolsQaLogo);
-        return toolsQaLogo.isDisplayed();
+        Waits.waitForPresence(toolsQaLogo);
+        return BaseElement.isDisplayed(toolsQaLogo);
     }
-
     public static void clickAlertsFramesWindowsButton(){
-        BaseElement.scrollTo(MainPage.alertFrameWinButton);
-        BaseElement.click(MainPage.alertFrameWinButton);
+        BaseElement.scrollTo(alertFrameWinButton);
+        BaseElement.click(alertFrameWinButton);
     }
     public static void clickElementsButton(){
-        BaseElement.scrollTo(MainPage.elementsButton);
-        BaseElement.click(MainPage.elementsButton);
+        BaseElement.scrollTo(elementsButton);
+        BaseElement.click(elementsButton);
     }
+
 }

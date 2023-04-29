@@ -11,6 +11,7 @@ public class FirefoxDriverManager implements Factory {
 
     @Override
     public WebDriver createDriver() {
+        WebDriverManager.firefoxdriver().setup();
         WebDriverManager.getInstance(FIREFOX).setup();
 
         return new FirefoxDriver();

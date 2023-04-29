@@ -1,94 +1,63 @@
 package a1qa.task3_1.PageObjects.AlertsTest;
 
 import a1qa.task3_1.PageObjects.BaseForm;
-import a1qa.task3_1.Utilities.BaseElement;
+import a1qa.task3_1.Tests.Scenarios.AlertsTest;
+import a1qa.task3_1.Utilities.Elements.BaseElement;
+import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.util.Random;
 
 public class AlertsPage extends BaseForm {
 
-    @FindBy(xpath = "//span[normalize-space()='Click Button to see alert']")
-    public static WebElement alertForm;
-
-    @FindBy(xpath = "//span[normalize-space()='On button click, alert will appear after 5 seconds']")
-    public static WebElement alert5SecsForm;
-
-    @FindBy(xpath = "//span[normalize-space()='On button click, confirm box will appear']")
-    public static WebElement alertConfirmForm;
-
-    @FindBy(xpath = "//span[normalize-space()='On button click, prompt box will appear']")
-    public static WebElement alertPromptForm;
-
-    @FindBy(xpath = "//button[@id='alertButton']")
-    public static WebElement alertButton;
-
-    @FindBy(xpath = "//button[@id='confirmButton']")
-    public static WebElement alertConfirmButton;
-
-    @FindBy(xpath = "//span[@id='confirmResult']")
-    public static WebElement alertConfirmResult;
-//span[@id='promptResult']
-
-    @FindBy(xpath = "//button[@id='promtButton']")
-    public static WebElement alertPromptButton;
-
-    @FindBy(xpath = "//span[@id='promptResult']")
-    public static WebElement alertPromptResult;
-
+    static LoggerUtil logger = new LoggerUtil(AlertsPage.class);
+    public static By alertForm = By.xpath("//div[contains(text(),'Alerts')]");
+    public static By alertButton = By.id("alertButton");
+    public static By alertConfirmButton = By.xpath("//button[@id='confirmButton']");
+    public static By alertConfirmResult = By.xpath("//span[@id='confirmResult']");
+    public static By alertPromptButton = By.id("promtButton");
+    public static By alertPromptResult = By.id("promptResult");
 
     public AlertsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    public static boolean alertsFormsDisplayed() {
-        return alertForm.isDisplayed() && alert5SecsForm.isDisplayed() && alertConfirmForm.isDisplayed() && alertPromptForm.isDisplayed();
+    public static boolean alertFormDisplayed(By locator) {
+        logger.info("Checking if alert form is displayed");
+        return BaseElement.isDisplayed(locator);
     }
 
-    public static void clickAlertButton(WebElement element) {
-        BaseElement.click(element);
+    public static void clickAlertButton(By locator) {
+        logger.debug("Clicking alert button with locator: " + locator.toString());
+        BaseElement.click(locator);
     }
 
     public static String getAlertText() {
-        Alert alert = driver.switchTo().alert();
+        logger.info("Switching to alert and getting its text");
+        Alert alert = BaseElement.switchToAlert();
         return alert.getText();
     }
 
+    public static String randomTextForAlert(){
+        String randomText = BaseElement.alertRandomText();
+        logger.info("Random text generated for alert: " + randomText);
+        return randomText;
+    }
+
     public static void clickOk() {
-        Alert alert = driver.switchTo().alert();
+        logger.info("Clicking OK button in alert");
+        Alert alert = BaseElement.switchToAlert();
         alert.accept();
     }
 
     public static boolean alertClosed() {
-        return AlertsPage.alertPromptButton.isEnabled();
+        logger.info("Checking if prompt alert is closed");
+        return BaseElement.findElement(alertPromptButton).isEnabled();
     }
 
-    public static String getResultText(WebElement element) {
-        return BaseElement.getText(element);
+    public static String getResultText(By locator) {
+        logger.debug("Getting text from element with locator: " + locator.toString());
+        return BaseElement.getText(locator);
     }
-
-    public static String alertRandomText() {
-        Alert alert = driver.switchTo().alert();
-
-        Random random = new Random();
-        StringBuilder builder = new StringBuilder();
-
-        int length = 8; // set the length of the string
-        String characters = "abcdefghijklmnopqrstuvwxyz";
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characters.length());
-            builder.append(characters.charAt(index));
-        }
-        String randomString = builder.toString();
-        alert.sendKeys(randomString);
-        return randomString;
-    }
-
-
 }
+

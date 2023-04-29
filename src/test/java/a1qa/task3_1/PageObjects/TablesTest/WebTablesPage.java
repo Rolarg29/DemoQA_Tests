@@ -1,104 +1,140 @@
 package a1qa.task3_1.PageObjects.TablesTest;
 
+import a1qa.task3_1.PageObjects.AlertsTest.AlertsWindowsPage;
 import a1qa.task3_1.PageObjects.BaseForm;
-import a1qa.task3_1.Utilities.BaseElement;
 import a1qa.task3_1.Utilities.DDT.TableData;
+import a1qa.task3_1.Utilities.Elements.BaseElement;
+import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import a1qa.task3_1.Utilities.Waits;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
 import java.util.Objects;
 
 public class WebTablesPage extends BaseForm {
 
-    @FindBy(xpath = "//span[normalize-space()='Web Tables']")
-    public static WebElement webTablesMenu;
-
-    @FindBy(xpath = "//div[contains(text(),'Web Tables')]")
-    public static WebElement webTablesForm;
-
-    @FindBy(id = "addNewRecordButton")
-    public static WebElement addTablesButton;
-
-    @FindBy(id = "registration-form-modal")
-    public static WebElement registrationForm;
-
-    @FindBy(id = "submit")
-    public static WebElement submitButton;
-
-    @FindBy(id = "firstName")
-    public static WebElement firstName;
-
-    @FindBy(id = "lastName")
-    public static WebElement lastName;
-
-    @FindBy(id = "userEmail")
-    public static WebElement email;
-
-    @FindBy(id = "age")
-    public static WebElement age;
-
-    @FindBy(id = "salary")
-    public static WebElement salary;
-
-    @FindBy(id = "department")
-    public static WebElement department;
-
-
-
-
+    static LoggerUtil logger = new LoggerUtil(WebTablesPage.class);
+    public static By webTablesMenu = By.xpath("//span[contains(text(),'Web Tables')]");
+    public static By webTablesForm = By.xpath("//div[contains(text(),'Web Tables')]");
+    public static By addTablesButton = By.id("addNewRecordButton");
+    public static By registrationForm = By.id("registration-form-modal");
+    public static By submitButton = By.id("submit");
+    public static By firstName = By.id("firstName");
+    public static By lastName = By.id("lastName");
+    public static By email = By.id("userEmail");
+    public static By age = By.id("age");
+    public static By salary = By.id("salary");
+    public static By department = By.id("department");
+    public static By userNumber1Record = By.xpath("//div[normalize-space()='Jon']");
+    public static By userNumber2Record = By.xpath("//div[normalize-space()='Buttercup']");
+    public static By searchTable = By.id("searchBox");
+    public static By deleteButton = By.xpath("//span[@title='Delete']");
 
     public WebTablesPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    public static void clickWebTablesMenu(){
-        BaseElement.scrollTo(webTablesMenu);
-        BaseElement.click(webTablesMenu);
+    public static void clickWebTablesMenu() {
+        try {
+            logger.debug("Scrolling to and clicking Web Tables menu");
+            BaseElement.scrollTo(webTablesMenu);
+            Waits.waitForClickable(webTablesMenu);
+            BaseElement.click(webTablesMenu);
+            logger.info("Clicked Web Tables menu");
+        } catch (Exception e) {
+            logger.error("An error occurred while clicking Web Tables menu: " + e.getMessage());
+        }
     }
 
-    public static void clickAddButton(){
-        BaseElement.scrollTo(addTablesButton);
-        BaseElement.click(addTablesButton);
+    public static void clickAddButton() {
+        try {
+            logger.debug("Clicking 'Add' button to insert new data into the table");
+            BaseElement.scrollTo(addTablesButton);
+            BaseElement.click(addTablesButton);
+        } catch (Exception e) {
+            logger.error("An error occurred while clicking on the 'Add' button: " + e.getMessage());
+        }
     }
 
     public static boolean webTablesOpen() {
-        return webTablesForm.isDisplayed() && addTablesButton.isDisplayed();
+        logger.debug("Checking if web tables page is open");
+        return BaseElement.isDisplayed(webTablesForm) && BaseElement.isDisplayed(addTablesButton);
     }
 
     public static boolean registrationFormOpen() {
-        return registrationForm.isEnabled();
+        return BaseElement.isEnabled(registrationForm);
     }
+
     public static boolean registrationFormClosed() {
-        return Waits.waitForInvisible(registrationForm);
+        return Waits.waitForInvisibleLocator(registrationForm);
     }
 
 
-    public static void fillRegistrationForm(String userNo){
-        if (registrationFormOpen()&&Objects.equals(userNo, "1")){
-            firstName.sendKeys(TableData.firstName1);
-            lastName.sendKeys(TableData.lastname1);
-            email.sendKeys(TableData.email1);
-            age.sendKeys(TableData.age1);
-            salary.sendKeys(TableData.salary1);
-            department.sendKeys(TableData.department1);
-        }
-        if (registrationFormOpen()&&Objects.equals(userNo, "2")){
-            firstName.sendKeys(TableData.firstName2);
-            lastName.sendKeys(TableData.lastname2);
-            email.sendKeys(TableData.email2);
-            age.sendKeys(TableData.age2);
-            salary.sendKeys(TableData.salary2);
-            department.sendKeys(TableData.department2);
+    public static void fillRegistrationForm(String userNo) {
+        logger.info("Filling registration form");
+        if (registrationFormOpen() && Objects.equals(userNo, "1")) {
+            BaseElement.type(TableData.firstName1, firstName);
+            BaseElement.type(TableData.lastname1, lastName);
+            BaseElement.type(TableData.email1, email);
+            BaseElement.type(TableData.age1, age);
+            BaseElement.type(TableData.salary1, salary);
+            BaseElement.type(TableData.department1, department);
         }
 
+        if (registrationFormOpen() && Objects.equals(userNo, "2")) {
+            BaseElement.type(TableData.firstName2, firstName);
+            BaseElement.type(TableData.lastname2, lastName);
+            BaseElement.type(TableData.email2, email);
+            BaseElement.type(TableData.age2, age);
+            BaseElement.type(TableData.salary2, salary);
+            BaseElement.type(TableData.department2, department);
+        }
+
     }
 
-    public static void clickSubmitButton(){
-        BaseElement.click(submitButton);
+    public static void clickSubmitButton() {
+        try {
+            logger.debug("Clicking Submit button");
+            BaseElement.click(submitButton);
+        } catch (Exception e) {
+            logger.error("An error occurred while clicking the Submit button: " + e.getMessage());
+        }
     }
 
+    public static boolean usersDataInTable() {
+        logger.debug("Checking both users No.1 and No.2 from Data table are in the web table");
+        return BaseElement.isDisplayed(userNumber1Record) && BaseElement.isDisplayed(userNumber2Record);
+    }
+
+    public static boolean usersDeletedFromTable() {
+        logger.debug("Checking both users 1 and 2 have been deleted from the Web table");
+        try {
+            logger.error("An error occurred while deleting users rows, at least one of the users has been found in the Web table");
+            return BaseElement.isDisplayed(userNumber1Record) || BaseElement.isDisplayed(userNumber2Record);
+        } catch (NoSuchElementException e) {
+            logger.info("Deletion has been successful, users No.1 and No.2 NOT found");
+            return false;
+        }
+    }
+
+    public static void locateUserInTable(String userName, By userRecord){
+        logger.debug("Locating ["+userName+"] user record in table to delete it" );
+        try {
+            String tableName = BaseElement.getText(userRecord);
+            logger.info("Name of user found in table records: [" + tableName + "]");
+            if (tableName.equals(userName)) {
+                logger.info("Records in table matches username");
+                logger.debug("Deleting record");
+                BaseElement.type(tableName, searchTable);
+                BaseElement.click(deleteButton);
+                BaseElement.clear(searchTable);
+            }
+        } catch (NoSuchElementException e) {
+            logger.error("An error occurred while locating use record in web table: " + e.getMessage());
+        }
+    }
 }
+

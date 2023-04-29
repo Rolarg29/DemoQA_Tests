@@ -2,60 +2,72 @@ package a1qa.task3_1.PageObjects.IframesTest;
 
 import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.Utilities.Elements.BaseElement;
-import a1qa.task3_1.Utilities.Waits;
+import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class FramesPage extends BaseForm {
 
-    @FindBy(xpath = "//div[contains(text(),'Frames')]")
-    public static WebElement frameForm;
-
-    @FindBy(id = "frame1Wrapper")
-    public static WebElement upperFrameWrapper;
-
-    @FindBy(id = "frame2Wrapper")
-    public static WebElement lowerFrameWrapper;
-
-
-    @FindBy(id = "frame1")
-    public static WebElement upperFrame;
-
-//    @FindBy(id = "frame2")
-//    public static WebElement lowerFrame;
-
-
-
+    static LoggerUtil logger = new LoggerUtil(FramesPage.class);
+    public static By frameForm = By.xpath("//div[contains(text(),'Frames')]");
+    public static By upperFrame = By.id("frame1");
+    public static By lowerFrame = By.id("frame2");
     public FramesPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
-
-
     public static boolean framesOpen() {
-        return frameForm.isDisplayed() && upperFrameWrapper.isDisplayed() && lowerFrameWrapper.isDisplayed();
+        logger.debug("Checking if Frames page is open");
+        try {
+            return BaseElement.isDisplayed(frameForm);
+        } catch (Exception e) {
+            logger.error("Error occurred while checking if Frames page is open: " + e.getMessage());
+            return false;
+        }
     }
 
     public static String upperFrameMessage(){
-        BaseElement.scrollTo(upperFrame);
-        driver.switchTo().frame(upperFrame);
-        String iFrameMsg = driver.findElement(By.id("sampleHeading")).getText();
-        driver.switchTo().parentFrame();
-        return iFrameMsg;
+        try {
+            logger.info("Switching to Upper Frame");
+            BaseElement.scrollTo(BaseElement.findElement(upperFrame));
+            BaseElement.switchToFrame(BaseElement.findElement(upperFrame));
+            try {
+                String iFrameMsg = BaseElement.findElement(By.id("sampleHeading")).getText();
+                logger.info("Getting the text from upper frame: " + iFrameMsg);
+                return iFrameMsg;
+
+            }catch (Exception e) {
+                logger.error("An error occurred while getting the message from the upper frame: " + e.getMessage());
+                return "";
+            }
+        }catch (Exception e){
+            logger.error("Error occurred while switching to upper frame: " + e.getMessage());
+            return "";
+        }finally {
+            logger.info("Back to default content");
+            BaseElement.switchToParentFrame();
+        }
     }
+
     public static String lowerFrameMessage(){
-        WebElement lowerFrame = driver.findElement(By.id("frame2"));
-        BaseElement.scrollTo(lowerFrame);
-        driver.switchTo().frame(lowerFrame);
-        BaseElement.scrollTo(By.cssSelector("#sampleHeading"));
-        String iFrameMsg = driver.findElement(By.cssSelector("#sampleHeading")).getText();
-        driver.switchTo().parentFrame();
-        return iFrameMsg;
+        try {
+            logger.info("Switching to Lower Frame");
+            BaseElement.scrollTo(BaseElement.findElement(lowerFrame));
+            BaseElement.switchToFrame(BaseElement.findElement(lowerFrame));
+            try {
+                BaseElement.scrollTo(By.id("sampleHeading"));
+                String iFrameMsg = BaseElement.findElement(By.id("sampleHeading")).getText();
+                logger.info("Getting the text from lower frame: " + iFrameMsg);
+                return iFrameMsg;
+            }catch (Exception e) {
+                logger.error("An error occurred while getting the message from the lower frame: " + e.getMessage());
+                return "";
+            }
+        } catch (Exception e) {
+            logger.error("An error occurred while trying to get the message from the lower frame: " + e.getMessage());
+            return "";
+        }finally {
+            logger.info("Back to default content");
+            BaseElement.switchToParentFrame();
+        }
     }
-
-
-
 }

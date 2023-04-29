@@ -1,9 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="MyTestSuite">
-    <test name="MyTest">
+<suite name="A1QA - Task 3.2 - r.ramirez Test Suite">
+    <test name="Alerts Test">
         <classes>
             <class name="a1qa.task3_1.Tests.Scenarios.AlertsTest"/>
+        </classes>
+    </test>
+    <test name="IFrames Test">
+        <classes>
             <class name="a1qa.task3_1.Tests.Scenarios.IframeTest"/>
+        </classes>
+    </test>
+    <test name="Tables Test">
+        <classes>
             <class name="a1qa.task3_1.Tests.Scenarios.TablesTest"/>
         </classes>
     </test>

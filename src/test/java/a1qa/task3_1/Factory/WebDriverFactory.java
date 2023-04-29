@@ -1,6 +1,7 @@
 package a1qa.task3_1.Factory;
 
 import a1qa.task3_1.Factory.Manager.ChromeDriverManager;
+import a1qa.task3_1.Factory.Manager.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -13,7 +14,7 @@ public class WebDriverFactory {
     }
 
     public static synchronized WebDriver initialize() {
-        String browser = "chrome";
+        String browser = "firefox";
         if (driver == null) {
             switch (browser) {
                 case "chrome":
@@ -21,13 +22,13 @@ public class WebDriverFactory {
                     driver =  chromeDriverManager.createDriver();
                     break;
                 case "firefox":
-                    driver = new FirefoxDriver();
+                    FirefoxDriverManager firefoxDriverManager = new FirefoxDriverManager();
+                    driver = firefoxDriverManager.createDriver();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid browser: " + browser);
             }
             driver.manage().window().maximize();
-//            driver.manage().deleteAllCookies();
         }
         return driver;
     }

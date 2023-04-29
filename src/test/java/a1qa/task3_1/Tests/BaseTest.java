@@ -1,40 +1,39 @@
 package a1qa.task3_1.Tests;
 
 import a1qa.task3_1.Factory.WebDriverFactory;
-import a1qa.task3_1.PageObjects.*;
-import a1qa.task3_1.PageObjects.AlertsTest.AlertsPage;
-import a1qa.task3_1.PageObjects.AlertsTest.AlertsWindowsPage;
 import a1qa.task3_1.PageObjects.IframesTest.FramesPage;
-import a1qa.task3_1.PageObjects.IframesTest.NestedFramesPage;
-import a1qa.task3_1.PageObjects.TablesTest.WebTablesPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import a1qa.task3_1.Utilities.Logger.LoggerUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 
 public class BaseTest {
-    WebDriver driver = WebDriverFactory.initialize();
+    static LoggerUtil logger = new LoggerUtil(BaseTest.class);
 
     @BeforeSuite
     public void setUp() {
         WebDriverFactory.initialize();
-        PageFactory.initElements(driver, MainPage.class);
-        PageFactory.initElements(driver, AlertsWindowsPage.class);
-        PageFactory.initElements(driver, AlertsPage.class);
-        PageFactory.initElements(driver, NestedFramesPage.class);
-        PageFactory.initElements(driver, FramesPage.class);
-        PageFactory.initElements(driver, WebTablesPage.class);
-
-
-
+        System.setProperty("log4j2.xml", "src/main/resources/log4j2.xml");
     }
+    @BeforeTest
+    public void testStart(ITestContext context){
+        String testName = context.getCurrentXmlTest().getName();
+        logger.info("STARTING TEST: " + testName.toUpperCase());
+    }
+
+    @AfterTest
+    public void testEnd(ITestContext context){
+        String testName = context.getCurrentXmlTest().getName();
+        logger.info("FINISHING TEST: " + testName);
+    }
+
 
     @AfterSuite
     public void tearDown() {
         WebDriverFactory.quitDriver();
     }
-
-
-
 }
