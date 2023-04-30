@@ -105,18 +105,22 @@ public class WebTablesPage extends BaseForm {
         return BaseElement.isDisplayed(userNumber1Record) && BaseElement.isDisplayed(userNumber2Record);
     }
 
-    public static boolean usersDeletedFromTable() {
-        logger.debug("Checking both users 1 and 2 have been deleted from the Web table");
+    public static boolean userDeletedFromTable(By locator, String name) {
+        logger.debug("Checking user ["+name+"] has been deleted from the Web table");
         try {
-            logger.error("An error occurred while deleting users rows, at least one of the users has been found in the Web table");
-            return BaseElement.isDisplayed(userNumber1Record) || BaseElement.isDisplayed(userNumber2Record);
+            boolean user =  BaseElement.isDisplayed(locator);
+            if (user) {
+                logger.error("An error occurred while deleting ["+name+"] user's row, the user has been found in the Web table");
+            }
+            logger.info("User ["+name+"] found in table: " + user);
+            return !user;
         } catch (NoSuchElementException e) {
-            logger.info("Deletion has been successful, users No.1 and No.2 NOT found");
-            return false;
+            logger.info("Deletion has been successful, user ["+name+"] NOT found");
+            return true;
         }
     }
 
-    public static void locateUserInTable(String userName, By userRecord){
+    public static void locateAndDeleteUserInTable(String userName, By userRecord){
         logger.debug("Locating ["+userName+"] user record in table to delete it" );
         try {
             String tableName = BaseElement.getText(userRecord);

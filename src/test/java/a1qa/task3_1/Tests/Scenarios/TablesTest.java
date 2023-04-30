@@ -9,8 +9,6 @@ import a1qa.task3_1.Utilities.DDT.TableData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 public class TablesTest extends BaseTest {
 
     @Test
@@ -44,9 +42,10 @@ public class TablesTest extends BaseTest {
 
         //step 5
 
-        WebTablesPage.locateUserInTable(TableData.firstName1, WebTablesPage.userNumber1Record);
-        WebTablesPage.locateUserInTable(TableData.firstName2, WebTablesPage.userNumber2Record);
-        Assert.assertFalse(WebTablesPage.usersDeletedFromTable());
+        WebTablesPage.locateAndDeleteUserInTable(TableData.firstName1, WebTablesPage.userNumber1Record);
+        WebTablesPage.locateAndDeleteUserInTable(TableData.firstName2, WebTablesPage.userNumber2Record);
+        Assert.assertTrue(WebTablesPage.userDeletedFromTable(WebTablesPage.userNumber1Record, TableData.firstName1));
+        Assert.assertTrue(WebTablesPage.userDeletedFromTable(WebTablesPage.userNumber2Record, TableData.firstName2));
 
 
     }
