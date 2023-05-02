@@ -1,7 +1,7 @@
 package a1qa.task3_1.PageObjects.AlertsTest;
 
 import a1qa.task3_1.PageObjects.BaseForm;
-import a1qa.task3_1.Tests.Scenarios.AlertsTest;
+import a1qa.task3_1.Utilities.Browser;
 import a1qa.task3_1.Utilities.Elements.BaseElement;
 import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import org.openqa.selenium.Alert;
@@ -34,7 +34,7 @@ public class AlertsPage extends BaseForm {
 
     public static String getAlertText() {
         logger.info("Switching to alert and getting its text");
-        Alert alert = BaseElement.switchToAlert();
+        Alert alert = Browser.switchToAlert();
         return alert.getText();
     }
 
@@ -46,7 +46,7 @@ public class AlertsPage extends BaseForm {
 
     public static void clickOk() {
         logger.info("Clicking OK button in alert");
-        Alert alert = BaseElement.switchToAlert();
+        Alert alert = Browser.switchToAlert();
         alert.accept();
     }
 

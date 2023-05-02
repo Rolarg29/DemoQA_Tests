@@ -13,8 +13,6 @@ public class BaseElement {
     }
     static JavascriptExecutor js = (JavascriptExecutor) driver;
 
-    BaseElement baseElement = new BaseElement(driver);
-
     //finds an element by any locator given
     public static WebElement findElement(By locator) {
         return driver.findElement(locator);
@@ -59,23 +57,6 @@ public class BaseElement {
         return driver.findElement(locator).isEnabled();
     }
 
-    public static void visit(String url) {
-        driver.get(url);
-    }
-
-    public static Alert switchToAlert(){
-        return driver.switchTo().alert();
-    }
-    public static void switchToFrame(WebElement element){
-        driver.switchTo().frame(element);
-    }
-    public static void switchToFrame(int index){
-        driver.switchTo().frame(index);
-    }
-    public static void switchToParentFrame(){
-        driver.switchTo().parentFrame();
-    }
-
     public static void scrollToEnd() {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
@@ -86,16 +67,6 @@ public class BaseElement {
     }
     public static void scrollTo(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-
-    public static void switchTab() {
-        String firstTab = driver.getWindowHandle();
-        for (String tab : driver.getWindowHandles()) {
-            if (!tab.equals(firstTab)) {
-                driver.switchTo().window(tab);
-            }
-        }
     }
 
     public static String alertRandomText() {

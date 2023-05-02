@@ -1,6 +1,7 @@
 package a1qa.task3_1.PageObjects.IframesTest;
 
 import a1qa.task3_1.PageObjects.BaseForm;
+import a1qa.task3_1.Utilities.Browser;
 import a1qa.task3_1.Utilities.Elements.BaseElement;
 import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import a1qa.task3_1.Utilities.Waits;
@@ -32,11 +33,11 @@ public class NestedFramesPage extends BaseForm {
             logger.info("Inside Parent Frame");
             Waits.waitForClickable(parentFrameMsg);
             BaseElement.scrollTo(parentFrameMsg);
-            BaseElement.switchToFrame(BaseElement.findElement(parentFrameMsg));
+            Browser.switchToFrame(BaseElement.findElement(parentFrameMsg));
             try {
                 logger.info("Getting the text from parent frame");
                 String iFrameMsg = BaseElement.findElement(By.xpath("//body")).getText();
-                BaseElement.switchToParentFrame();
+                Browser.switchToParentFrame();
                 return iFrameMsg;
             }catch (Exception e){
                 logger.error("An error occurred while getting the text from the parent frame: " + e.getMessage());
@@ -47,17 +48,17 @@ public class NestedFramesPage extends BaseForm {
             return "";
         } finally {
             logger.info("Back to default content");
-            BaseElement.switchToParentFrame();
+            Browser.switchToParentFrame();
         }
     }
 
     public static String childFrameMsg(){
         try {
             logger.debug("Switching to Parent Frame to get the text of the Child frame");
-            BaseElement.switchToFrame(BaseElement.findElement(parentFrameMsg));
+            Browser.switchToFrame(BaseElement.findElement(parentFrameMsg));
             try {
                 logger.debug("Switching to Child Frame");
-                BaseElement.switchToFrame(0);
+                Browser.switchToFrame(0);
                 try {
                     logger.info("Getting the text from child frame");
                     return BaseElement.findElement(By.xpath("//p[normalize-space()='Child Iframe']")).getText();
@@ -74,8 +75,8 @@ public class NestedFramesPage extends BaseForm {
             return "";
         }finally {
             logger.info("Back to default content");
-            BaseElement.switchToParentFrame();
-            BaseElement.switchToParentFrame();
+            Browser.switchToParentFrame();
+            Browser.switchToParentFrame();
         }
     }
 }
