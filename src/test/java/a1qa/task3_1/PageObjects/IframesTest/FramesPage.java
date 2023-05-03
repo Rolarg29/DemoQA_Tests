@@ -9,13 +9,15 @@ import org.openqa.selenium.WebDriver;
 
 public class FramesPage extends BaseForm {
 
-    static LoggerUtil logger = new LoggerUtil(FramesPage.class);
-    public static By frameForm = By.xpath("//div[contains(text(),'Frames')]");
-    public static By upperFrame = By.id("frame1");
-    public static By lowerFrame = By.id("frame2");
+    private static final LoggerUtil logger = new LoggerUtil(FramesPage.class);
+    private static final By frameForm = By.xpath("//div[contains(text(),'Frames')]");
+    private static final By upperFrame = By.id("frame1");
+    private static final By lowerFrame = By.id("frame2");
+
     public FramesPage(WebDriver driver) {
         super(driver);
     }
+
     public static boolean framesOpen() {
         logger.debug("Checking if Frames page is open");
         try {

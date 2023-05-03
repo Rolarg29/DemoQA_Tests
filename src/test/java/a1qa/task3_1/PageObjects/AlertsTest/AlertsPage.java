@@ -10,13 +10,13 @@ import org.openqa.selenium.WebDriver;
 
 public class AlertsPage extends BaseForm {
 
-    static LoggerUtil logger = new LoggerUtil(AlertsPage.class);
-    public static By alertForm = By.xpath("//div[contains(text(),'Alerts')]");
-    public static By alertButton = By.id("alertButton");
-    public static By alertConfirmButton = By.xpath("//button[@id='confirmButton']");
-    public static By alertConfirmResult = By.xpath("//span[@id='confirmResult']");
-    public static By alertPromptButton = By.id("promtButton");
-    public static By alertPromptResult = By.id("promptResult");
+    private static final LoggerUtil logger = new LoggerUtil(AlertsPage.class);
+    public static final By alertForm = By.xpath("//div[contains(text(),'Alerts')]");
+    public static final By alertButton = By.id("alertButton");
+    public static final By alertConfirmButton = By.xpath("//button[@id='confirmButton']");
+    public static final By alertConfirmResult = By.xpath("//span[@id='confirmResult']");
+    public static final By alertPromptButton = By.id("promtButton");
+    public static final By alertPromptResult = By.id("promptResult");
 
     public AlertsPage(WebDriver driver) {
         super(driver);
