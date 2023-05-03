@@ -1,6 +1,7 @@
 package a1qa.task3_1.PageObjects.IframesTest;
 
 import a1qa.task3_1.PageObjects.BaseForm;
+import a1qa.task3_1.Utilities.Browser;
 import a1qa.task3_1.Utilities.Elements.BaseElement;
 import a1qa.task3_1.Utilities.Logger.LoggerUtil;
 import org.openqa.selenium.By;
@@ -29,7 +30,7 @@ public class FramesPage extends BaseForm {
         try {
             logger.info("Switching to Upper Frame");
             BaseElement.scrollTo(BaseElement.findElement(upperFrame));
-            BaseElement.switchToFrame(BaseElement.findElement(upperFrame));
+            Browser.switchToFrame(BaseElement.findElement(upperFrame));
             try {
                 String iFrameMsg = BaseElement.findElement(By.id("sampleHeading")).getText();
                 logger.info("Getting the text from upper frame: " + iFrameMsg);
@@ -44,7 +45,7 @@ public class FramesPage extends BaseForm {
             return "";
         }finally {
             logger.info("Back to default content");
-            BaseElement.switchToParentFrame();
+            Browser.switchToParentFrame();
         }
     }
 
@@ -52,7 +53,7 @@ public class FramesPage extends BaseForm {
         try {
             logger.info("Switching to Lower Frame");
             BaseElement.scrollTo(BaseElement.findElement(lowerFrame));
-            BaseElement.switchToFrame(BaseElement.findElement(lowerFrame));
+            Browser.switchToFrame(BaseElement.findElement(lowerFrame));
             try {
                 BaseElement.scrollTo(By.id("sampleHeading"));
                 String iFrameMsg = BaseElement.findElement(By.id("sampleHeading")).getText();
@@ -67,7 +68,7 @@ public class FramesPage extends BaseForm {
             return "";
         }finally {
             logger.info("Back to default content");
-            BaseElement.switchToParentFrame();
+            Browser.switchToParentFrame();
         }
     }
 }
