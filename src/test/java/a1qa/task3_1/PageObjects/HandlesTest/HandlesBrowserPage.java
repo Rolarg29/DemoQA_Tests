@@ -1,21 +1,24 @@
 package a1qa.task3_1.PageObjects.HandlesTest;
 
-import a1qa.task3_1.PageObjects.AlertsTest.AlertsPage;
 import a1qa.task3_1.PageObjects.BaseForm;
+import a1qa.task3_1.Utilities.Browser;
 import a1qa.task3_1.Utilities.Elements.BaseElement;
 import a1qa.task3_1.Utilities.Logger.LoggerUtil;
+import a1qa.task3_1.Utilities.Waits;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class HandlesBrowserPage extends BaseForm {
 
-    private static final LoggerUtil logger = new LoggerUtil(AlertsPage.class);
-    private static final By browserWindowsHeader = By.xpath("//div[contains(@class,'main-header')]");
+    private static final LoggerUtil logger = new LoggerUtil(HandlesBrowserPage.class);
+    private static final By browserWindowsHeader = By.xpath("//div[contains(text(),'Browser Windows')]");
     private static final By browserWindowsMenu = By.xpath("//span[normalize-space()='Browser Windows']");
     private static final By newTabButton = By.id("tabButton");
+    private static final By newTabElement = By.id("sampleHeading");
 
-    public HandlesBrowserPage(WebDriver driver) {
+
+    public HandlesBrowserPage() {
         super(driver);
+        driver=BaseElement.driver;
     }
 
     public static void clickBrowserMenu(){
@@ -45,4 +48,19 @@ public class HandlesBrowserPage extends BaseForm {
             logger.error("Failed to click New Tab button; " + e.getMessage());
         }
     }
+
+    public static void openNewTab(){
+        clickNewTab();
+        Waits.waitForNewTabOpens(2);
+        Browser.switchTab();
+    }
+
+    public static void closeNewTab(){
+        Browser.switchBackAfterClosingTab();
+    }
+    public static String newTabDisplayed(){
+        Waits.waitForPresence(newTabElement);
+        return BaseElement.getText(newTabElement);
+    }
+
 }

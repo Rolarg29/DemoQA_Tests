@@ -15,7 +15,6 @@ public class Waits {
 
     private static final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds((10)));
 
-
     public static void waitForClickable(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
@@ -41,6 +40,7 @@ public class Waits {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
     }
 
-
+    public static void waitForNewTabOpens(int num) {
+        wait.until(ExpectedConditions.numberOfWindowsToBe(num));    }
 }
 

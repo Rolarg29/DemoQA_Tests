@@ -5,6 +5,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.Set;
+
 public class Browser {
 
     static WebDriver driver = BaseElement.driver;
@@ -18,12 +20,18 @@ public class Browser {
     }
 
     public static void switchTab() {
-        String firstTab = driver.getWindowHandle();
+        String mainTab = driver.getWindowHandle();
         for (String tab : driver.getWindowHandles()) {
-            if (!tab.equals(firstTab)) {
+            if (!tab.equals(mainTab)) {
                 driver.switchTo().window(tab);
             }
         }
+    }
+
+    public static void switchBackAfterClosingTab(){
+        Set<String> windowHandles = driver.getWindowHandles();
+        driver.close();
+        driver.switchTo().window(windowHandles.iterator().next());
     }
 
     public static void switchToFrame(WebElement element){
@@ -37,4 +45,5 @@ public class Browser {
     public static void switchToParentFrame(){
         driver.switchTo().parentFrame();
     }
+
 }

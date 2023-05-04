@@ -2,6 +2,7 @@ package a1qa.task3_1.Tests.Scenarios;
 
 import a1qa.task3_1.PageObjects.BaseForm;
 import a1qa.task3_1.PageObjects.HandlesTest.HandlesBrowserPage;
+import a1qa.task3_1.PageObjects.HandlesTest.HandlesLinksPage;
 import a1qa.task3_1.PageObjects.MainPage;
 import a1qa.task3_1.Tests.BaseTest;
 import a1qa.task3_1.Utilities.Browser;
@@ -22,6 +23,16 @@ public class HandlesTest extends BaseTest {
         Assert.assertTrue(HandlesBrowserPage.browserWindowOpen());
 
         //step 3
-        HandlesBrowserPage.clickNewTab();
+        HandlesBrowserPage.openNewTab();
+        Assert.assertEquals(HandlesBrowserPage.newTabDisplayed(), "This is a sample page");
+
+        //step 4
+        HandlesBrowserPage.closeNewTab();
+        Assert.assertTrue(HandlesBrowserPage.browserWindowOpen());
+
+        //step 5
+        HandlesLinksPage.clickElementsDropDown();
+        HandlesLinksPage.clickLinksMenu();
+        Assert.assertTrue(HandlesLinksPage.linksWindowOpen());
     }
 }
