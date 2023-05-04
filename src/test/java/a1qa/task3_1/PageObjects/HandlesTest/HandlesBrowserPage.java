@@ -51,16 +51,33 @@ public class HandlesBrowserPage extends BaseForm {
 
     public static void openNewTab(){
         clickNewTab();
-        Waits.waitForNewTabOpens(2);
-        Browser.switchTab();
+        try{
+            logger.debug("Waiting New Tab to open");
+            Waits.waitForNewTabOpens(2);
+            Browser.switchTab();
+        } catch (Exception e) {
+            logger.error("Failed to open New Tab; " + e.getMessage());
+        }
     }
 
     public static void closeNewTab(){
-        Browser.switchBackAfterClosingTab();
+        try{
+            logger.debug("Closing New tab an returning to previous 'Browser Window' page");
+            Browser.switchBackAfterClosingTab();
+        } catch (Exception e) {
+            logger.error("Failed to close New Tab and switching back; " + e.getMessage());
+        }
     }
+
     public static String newTabDisplayed(){
-        Waits.waitForPresence(newTabElement);
-        return BaseElement.getText(newTabElement);
+        try{
+            logger.info("Waiting for New tab page to load");
+            Waits.waitForPresence(newTabElement);
+            return BaseElement.getText(newTabElement);
+        } catch (Exception e) {
+            logger.error("Failed to load New Tab, No elements displayed; " + e.getMessage());
+            return " ";
+        }
     }
 
 }

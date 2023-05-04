@@ -88,7 +88,6 @@ public class WebTablesPage extends BaseForm {
             BaseElement.type(TableData.salary2, salary);
             BaseElement.type(TableData.department2, department);
         }
-
     }
 
     public static void clickSubmitButton() {

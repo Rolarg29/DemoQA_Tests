@@ -15,4 +15,9 @@
             <class name="a1qa.task3_1.Tests.Scenarios.TablesTest"/>
         </classes>
     </test>
+    <test name="Handles Test">
+        <classes>
+            <class name="a1qa.task3_1.Tests.Scenarios.HandlesTest"/>
+        </classes>
+    </test>
 </suite>

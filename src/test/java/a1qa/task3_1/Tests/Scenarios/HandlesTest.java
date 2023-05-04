@@ -34,5 +34,14 @@ public class HandlesTest extends BaseTest {
         HandlesLinksPage.clickElementsDropDown();
         HandlesLinksPage.clickLinksMenu();
         Assert.assertTrue(HandlesLinksPage.linksWindowOpen());
+
+        //step 6
+        HandlesLinksPage.clickHomeLink();
+        Assert.assertTrue(HandlesLinksPage.mainWindowTabOpen());
+
+        //step 7
+        HandlesLinksPage.returnToPreviousTab();
+        Assert.assertTrue(HandlesLinksPage.linksWindowOpen());
+
     }
 }

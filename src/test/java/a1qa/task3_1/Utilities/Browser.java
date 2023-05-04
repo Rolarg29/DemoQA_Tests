@@ -34,6 +34,11 @@ public class Browser {
         driver.switchTo().window(windowHandles.iterator().next());
     }
 
+    public static void switchBackPreviousTab(){
+        Set<String> windowHandles = driver.getWindowHandles();
+        driver.switchTo().window(windowHandles.iterator().next());
+    }
+
     public static void switchToFrame(WebElement element){
         driver.switchTo().frame(element);
     }
