@@ -1,6 +1,10 @@
-# r.ramirez
-r.ramirez
+# DEMO QA TESTING
 
-Already cloned my repository.
+### Testing with Selenium and TestNG
+### Java version
+#### Website -- https://demoqa.com/
 
-I´ll be working with Java.
+- Task 1.0
+- Task 2.1
+- Task 3.1
+- Task 3.2
